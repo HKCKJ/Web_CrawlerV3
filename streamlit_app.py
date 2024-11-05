@@ -5,6 +5,10 @@ from ScrapeTasks import user_url, user_topic, user_format, summarised_output
 from streamlit_check.utility import check_password
 from ScrapeAgents import StreamToExpander
 
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+                                         
 # region <--------- Streamlit Page Configuration --------->
 
 st.set_page_config(
