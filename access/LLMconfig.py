@@ -18,5 +18,14 @@ if load_dotenv('.env'):
         deployment_id="gpt-4o-prd-gcc2-lb"  # Your Azure deployment name
     )
 else: 
-    st.secrets["SERPER_API_KEY"]
-    st.secrets["OPENAI_API_KEY"]
+    SERPER_API_KEY = os.environ["SERPER_API_KEY"]
+    llm = LLM(
+        model="gpt-4o-mini",  # Use the standard OpenAI model name
+        api_key=os.environ["OPENAI_API_KEY"],
+        base_url="https://litellm.govtext.gov.sg/",
+        default_headers={
+        "user-agent": "Mozilla/5.0 (X11; Linux x86_64; rv:60.0) Gecko/20100101 Firefox/81.0"
+        },
+        custom_llm_provider="azure openai",
+        deployment_id="gpt-4o-prd-gcc2-lb"  # Your Azure deployment name
+    )

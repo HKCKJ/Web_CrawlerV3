@@ -5,13 +5,13 @@ from crewai_tools import ScrapeWebsiteTool, SerperDevTool
 
 #Function for user input in case a conditional task needs to be added. These can be then used to define conditional task.
 def user_url():
-    return st.text_input("URL you want to scrape?")
+    return st.text_input("URLs:")
 
 def user_topic():
-    return st.text_input("What is the topic of interest? Examples: Price of products? Summary on forensic science ")
+    return st.text_input("What is the topic of interest:")
 
 def summarised_output():
-    return st.selectbox("Do you wish to summarise scraped content?:", ["Yes", "No"])
+    return st.selectbox("Do you wish to summarise scraped content:", ["Yes", "No"])
 
 def user_format():
     return st.selectbox("Output format:", ["Markdown", "JSON", "Plain Text","Excel Table"])

@@ -4,10 +4,6 @@ from main import ScrapeCrew
 from ScrapeTasks import user_url, user_topic, user_format, summarised_output
 from streamlit_check.utility import check_password
 from ScrapeAgents import StreamToExpander
-
-__import__('pysqlite3')
-import sys
-sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
                                          
 # region <--------- Streamlit Page Configuration --------->
 
@@ -39,6 +35,17 @@ if submitted:
             inputs = f"url: {url}\ntopic: {topic}\nformat: {format}"
             Crew_result = ScrapeCrew(inputs)
             result = Crew_result.run()
+
+    with st.status("🤖 **Results are ready**", state="complete", expanded=True) as status:
+        with st.container(height=500, border=False):
             st.subheader("Here is your Data", anchor=False, divider="rainbow")
-        with st.container(height=500, border=True):
             st.markdown(result)
+
+with st.expander("Important Notice", expanded=False):
+    st.write("""
+
+IMPORTANT NOTICE: This web application is developed as a proof-of-concept prototype. The information provided here is NOT intended for actual usage and should not be relied upon for making any decisions, especially those related to financial, legal, or healthcare matters.
+Furthermore, please be aware that the LLM may generate inaccurate or incorrect information. You assume full responsibility for how you use any generated output.
+Always consult with qualified professionals for accurate and personalized advice.
+
+""")
